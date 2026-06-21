@@ -28,6 +28,11 @@
       top: 5rem;
     }
 
+    .product-info {
+      position: sticky;
+      top: 5rem;
+    }
+
     /* Eski galeri stilleri yerini yenisine bıraktı */
     .gallery-main-OLD {
       border-radius: var(--radius);
@@ -85,22 +90,6 @@
       border-top: 1px solid var(--warm-gray);
       margin: 1.5rem 0;
     }
-
-    .desc-highlights {
-      list-style: none;
-      margin-top: 0.9rem;
-    }
-    .desc-highlights li {
-      display: flex;
-      gap: 0.6rem;
-      align-items: flex-start;
-      font-size: 0.85rem;
-      line-height: 1.5;
-      padding: 0.45rem 0;
-      border-bottom: 1px solid var(--warm-gray);
-    }
-    .desc-highlights li:last-child { border: none; }
-    .desc-highlights li > span:first-child { flex-shrink: 0; font-size: 1rem; }
 
     .usage-steps {
       display: grid;
@@ -355,9 +344,10 @@
         border-radius: var(--radius);
         overflow: hidden;
         aspect-ratio: 1;
-        background: var(--warm-gray);
+        background: var(--cream);
         margin-bottom: 0.75rem;
         user-select: none;
+        cursor: zoom-in;
       }
 
       .gallery-slides {
@@ -376,7 +366,8 @@
       .gallery-slide img {
         width: 100%;
         height: 100%;
-        object-fit: cover;
+        object-fit: contain;
+        background: var(--cream);
         display: block;
       }
 
@@ -438,6 +429,55 @@
       }
       .gallery-thumb.active { border-color: var(--black); }
       .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* --- Lightbox --- */
+    #lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.92);
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 92vw;
+      max-height: 92vh;
+      object-fit: contain;
+      border-radius: var(--radius);
+    }
+    #lightbox-close {
+      position: absolute;
+      top: 1rem; right: 1.25rem;
+      background: none;
+      border: none;
+      color: #fff;
+      font-size: 2rem;
+      cursor: pointer;
+      line-height: 1;
+      opacity: 0.8;
+    }
+    #lightbox-close:hover { opacity: 1; }
+    #lightbox-prev, #lightbox-next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.15);
+      border: none;
+      color: #fff;
+      font-size: 1.5rem;
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #lightbox-prev { left: 1rem; }
+    #lightbox-next { right: 1rem; }
   </style>
 
   <!-- Schema.org: Product -->
@@ -463,6 +503,14 @@
   </script>
 </head>
 <body>
+
+  <!-- Lightbox -->
+  <div id="lightbox">
+    <button id="lightbox-close" aria-label="Kapat">✕</button>
+    <button id="lightbox-prev" aria-label="Önceki">&#8592;</button>
+    <img id="lightbox-img" src="" alt="Ürün görseli" />
+    <button id="lightbox-next" aria-label="Sonraki">&#8594;</button>
+  </div>
 
   <div id="site-header"></div>
 
@@ -544,52 +592,8 @@
             </div>
           </div>
 
-          <hr class="divider" />
-
-          <!-- Ürün Açıklaması -->
-          <div>
-            <p style="font-size:0.875rem; line-height:1.7; color:var(--text-muted)">
-              Hem ebeveyn kontrollü üç tekerlekli bisiklet hem de bağımsız denge bisikleti
-              olarak çalışan çok yönlü bir tasarım — bebeğinizin 10 aydan 5 yaşına kadar
-              her evresine uyum sağlar.
-            </p>
-            <ul class="desc-highlights">
-              <li>
-                <span>🔄</span>
-                <span><strong>360° Dönen Koltuk</strong> — bebeğinizle göz teması kurun ya da dış dünyayı birlikte keşfedin</span>
-              </li>
-              <li>
-                <span>😴</span>
-                <span><strong>Çift Yönlü Yatış Pozisyonu</strong> — hangi yönde otursa otursun 2 kademeli yatış açısı</span>
-              </li>
-              <li>
-                <span>🚲</span>
-                <span><strong>Denge Bisikleti Modu</strong> — büyüdükçe denge, motor becerisi ve kas gelişimini destekler</span>
-              </li>
-              <li>
-                <span>⚡</span>
-                <span><strong>3 Saniyede Katlanır</strong> — tek hareketle açılıp kapanır</span>
-              </li>
-              <li>
-                <span>✈️</span>
-                <span><strong>Uçak Kabin Bagajına Sığar</strong> — ultra kompakt, sadece 8,4 kg</span>
-              </li>
-            </ul>
-          </div>
 
           <hr class="divider" />
-
-          <!-- Özellikler özeti -->
-          <ul class="specs-list">
-            <li><span class="spec-label">360° Dönen Koltuk</span><span class="spec-value">✓</span></li>
-            <li><span class="spec-label">5 Noktalı Emniyet Kemeri</span><span class="spec-value">✓</span></li>
-            <li><span class="spec-label">Güvenlik Bariyeri</span><span class="spec-value">✓</span></li>
-            <li><span class="spec-label">Katlanma Süresi</span><span class="spec-value">3 saniye</span></li>
-            <li><span class="spec-label">Ağırlık</span><span class="spec-value">8.4 kg</span></li>
-            <li><span class="spec-label">Sertifika</span><span class="spec-value">EN71</span></li>
-            <li><span class="spec-label">Renk Seçeneği</span><span class="spec-value">6 renk</span></li>
-            <li><span class="spec-label">Yaş Aralığı</span><span class="spec-value">10 Ay – 5 Yaş</span></li>
-          </ul>
 
           <!-- Satın Al -->
           <div class="buy-section">
@@ -612,6 +616,64 @@
               * Tüm pazaryerlerinde ücretsiz kargo ve güvenli ödeme
             </p>
           </div>
+
+          <!-- Özellikler özeti -->
+          <ul class="specs-list">
+            <li><span class="spec-label">360° Dönen Koltuk</span><span class="spec-value">✓</span></li>
+            <li><span class="spec-label">5 Noktalı Emniyet Kemeri</span><span class="spec-value">✓</span></li>
+            <li><span class="spec-label">Güvenlik Bariyeri</span><span class="spec-value">✓</span></li>
+            <li><span class="spec-label">Katlanma Süresi</span><span class="spec-value">3 saniye</span></li>
+            <li><span class="spec-label">Ağırlık</span><span class="spec-value">8.4 kg</span></li>
+            <li><span class="spec-label">Sertifika</span><span class="spec-value">EN71</span></li>
+            <li><span class="spec-label">Renk Seçeneği</span><span class="spec-value">6 renk</span></li>
+            <li><span class="spec-label">Yaş Aralığı</span><span class="spec-value">10 Ay – 5 Yaş</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ürün Açıklaması — tam genişlik -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-label">Ürün Açıklaması</span>
+        <h2 style="margin-top:0.5rem">Minik maceracılar için<br/>tasarlandı</h2>
+      </div>
+      <p style="max-width:70ch; margin: 0 auto 2rem; text-align:center; color:var(--text-muted); font-size:1rem; line-height:1.8;">
+        Hem ebeveyn kontrollü üç tekerlekli bisiklet hem de bağımsız denge bisikleti olarak
+        çalışan çok yönlü bir tasarım — bebeğinizin 10 aydan 5 yaşına kadar her evresine uyum sağlar.
+      </p>
+      <div class="features-grid" style="max-width:900px; margin:0 auto;">
+        <div class="feature-item">
+          <span class="feature-icon">🔄</span>
+          <h3>360° Dönen Koltuk</h3>
+          <p>Bebeğinizle göz teması kurun ya da dış dünyayı birlikte keşfedin. Her iki yönde mükemmel konfor.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">😴</span>
+          <h3>Çift Yönlü Yatış</h3>
+          <p>Hangi yönde otursa otursun, 2 kademeli yatış açısıyla çocuğunuz seyahatte rahatça uyuyabilir.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🚲</span>
+          <h3>Denge Bisikleti Modu</h3>
+          <p>Büyüdükçe denge, motor becerisi ve kas gelişimini destekleyen bağımsız kullanım moduna geçer.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">⚡</span>
+          <h3>3 Saniyede Katlanır</h3>
+          <p>Tek hareketle açılıp kapanır. Alışveriş merkezi, havalimanı, araba bagajı — her yerde pratik.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✈️</span>
+          <h3>Uçak Kabin Bagajına Sığar</h3>
+          <p>Ultra kompakt boyutları ve sadece 8,4 kg ağırlığıyla seyahatin her adımında yanınızda.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🛡️</span>
+          <h3>EN71 Sertifikalı</h3>
+          <p>Avrupa güvenlik standartlarına tam uyum. 5 noktalı emniyet kemeri ve güvenlik bariyeri ile ek koruma.</p>
         </div>
       </div>
     </div>
@@ -910,6 +972,45 @@
     });
 
     buildGallery('beyaz');
+
+    // Lightbox
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+
+    function openLightbox(index) {
+      const folder = currentFolder;
+      lightboxImg.src = `images/${folder}/${index + 1}.jpg`;
+      lightboxImg.alt = `The Way Flow 9in1 Smart Trike — ${folder} — Görsel ${index + 1}`;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('gallery-wrap').addEventListener('click', (e) => {
+      if (!e.target.closest('.gallery-arrow')) openLightbox(currentIndex);
+    });
+    document.getElementById('lightbox-close').addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e) => { if (e.target === lightbox) closeLightbox(); });
+    document.getElementById('lightbox-prev').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = currentIndex === 0 ? totalImages - 1 : currentIndex - 1;
+      openLightbox(idx); goTo(idx);
+    });
+    document.getElementById('lightbox-next').addEventListener('click', (e) => {
+      e.stopPropagation();
+      const idx = currentIndex === totalImages - 1 ? 0 : currentIndex + 1;
+      openLightbox(idx); goTo(idx);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (!lightbox.classList.contains('open')) return;
+      if (e.key === 'Escape') closeLightbox();
+      if (e.key === 'ArrowLeft') document.getElementById('lightbox-prev').click();
+      if (e.key === 'ArrowRight') document.getElementById('lightbox-next').click();
+    });
 
     // Sticky satın al çubuğu
     const stickyBar = document.getElementById('sticky-buy-bar');
