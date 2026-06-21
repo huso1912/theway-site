@@ -99,19 +99,19 @@ p { max-width: 65ch; }
 }
 
 .logo-img {
-  height: 160px;
+  height: 140px;
   width: auto;
   display: block;
 }
 
 .logo-img--footer {
-  height: 120px;
+  height: 100px;
   filter: brightness(0) invert(1);
 }
 
 @media (max-width: 768px) {
-  .logo-img { height: 110px; }
-  .logo-img--footer { height: 90px; }
+  .logo-img { height: 100px; }
+  .logo-img--footer { height: 80px; }
 }
 
 /* --- Header / Nav --- */
@@ -121,7 +121,7 @@ p { max-width: 65ch; }
   z-index: 100;
   background: var(--white);
   border-bottom: 1px solid var(--warm-gray);
-  padding: 0.5rem 0;
+  padding: 0;
 }
 
 .site-header .container {
