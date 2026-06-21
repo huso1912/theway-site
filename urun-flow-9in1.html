@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Flow 9in1 Smart Trike — The Way</title>
+  <meta name="description" content="The Way Flow 9in1 Smart Trike: 9 farklı kullanım modu, 360° dönen koltuk, 3 saniyede katlanma. 10 ay – 5 yaş arası çocuğunuzla büyür. Trendyol, Hepsiburada, Amazon ve N11'de." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    /* Ürün sayfasına özel stiller */
+    .product-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .product-layout { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .product-gallery {
+      position: sticky;
+      top: 5rem;
+    }
+
+    /* Eski galeri stilleri yerini yenisine bıraktı */
+    .gallery-main-OLD {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 1;
+      background: var(--warm-gray);
+      margin-bottom: 0.75rem;
+    }
+
+    .gallery-thumbs {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .gallery-thumb {
+      flex: 1;
+      aspect-ratio: 1;
+      border-radius: var(--radius-sm);
+      background: var(--warm-gray);
+      border: 2px solid transparent;
+      cursor: pointer;
+      overflow: hidden;
+      transition: border-color var(--transition);
+    }
+
+    .gallery-thumb.active { border-color: var(--black); }
+
+    .product-info h1 {
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      margin-bottom: 0.5rem;
+    }
+
+    .product-tagline {
+      font-size: 1rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .age-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--cream);
+      border: 1.5px solid var(--warm-gray);
+      border-radius: 999px;
+      padding: 0.35rem 0.9rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--warm-gray);
+      margin: 1.5rem 0;
+    }
+
+    .desc-highlights {
+      list-style: none;
+      margin-top: 0.9rem;
+    }
+    .desc-highlights li {
+      display: flex;
+      gap: 0.6rem;
+      align-items: flex-start;
+      font-size: 0.85rem;
+      line-height: 1.5;
+      padding: 0.45rem 0;
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .desc-highlights li:last-child { border: none; }
+    .desc-highlights li > span:first-child { flex-shrink: 0; font-size: 1rem; }
+
+    .usage-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    @media (max-width: 640px) { .usage-steps { grid-template-columns: 1fr; } }
+    .usage-step {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      border-left: 4px solid var(--accent);
+    }
+    .usage-step .step-num {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-dark);
+      margin-bottom: 0.5rem;
+    }
+    .usage-step h4 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .usage-step p { font-size: 0.875rem; color: var(--text-muted); margin: 0; }
+
+    .age-funcs {
+      margin-top: 2rem;
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0.75rem;
+      text-align: center;
+    }
+    @media (max-width: 768px) { .age-funcs { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 480px) { .age-funcs { grid-template-columns: repeat(2, 1fr); } }
+    .age-func {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.25rem 0.75rem;
+    }
+    .age-func .age-range {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent-dark);
+      margin-bottom: 0.5rem;
+    }
+    .age-func .func-list {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .safety-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+    }
+    .safety-chip {
+      background: var(--white);
+      border: 1px solid var(--warm-gray);
+      border-radius: 2rem;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.8rem;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .buy-section {
+      background: var(--cream);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .buy-section h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+/* --- Sticky satın al çubuğu --- */
+    .sticky-buy-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 200;
+      background: var(--white);
+      border-top: 1px solid var(--warm-gray);
+      box-shadow: 0 -4px 20px rgba(0,0,0,0.10);
+      padding: 0.75rem 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      transform: translateY(100%);
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .sticky-buy-bar.visible { transform: translateY(0); }
+    .sticky-buy-bar .sticky-name {
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex: 1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .sticky-buy-bar .sticky-sub {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: block;
+      font-weight: 400;
+    }
+    @media (max-width: 480px) {
+      .sticky-buy-bar .sticky-name { font-size: 0.82rem; }
+    }
+
+    /* --- Timeline --- */
+    .timeline {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      position: relative;
+      overflow-x: auto;
+      padding-bottom: 0.5rem;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      top: 28px;
+      left: 32px;
+      right: 32px;
+      height: 2px;
+      background: var(--warm-gray);
+      z-index: 0;
+    }
+    .tl-item {
+      flex: 1;
+      min-width: 120px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 0 0.5rem;
+    }
+    .tl-dot {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: var(--black);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 0.75rem;
+      flex-shrink: 0;
+      border: 3px solid var(--white);
+      box-shadow: 0 0 0 2px var(--black);
+    }
+    .tl-age {
+      font-weight: 800;
+      font-size: 0.85rem;
+      margin-bottom: 0.3rem;
+    }
+    .tl-modes {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* --- Karşılaştırma tablosu --- */
+    .compare-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+    }
+    .compare-table th {
+      padding: 0.85rem 1rem;
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: var(--warm-gray);
+    }
+    .compare-table th:last-child {
+      background: var(--black);
+      color: var(--white);
+      text-align: center;
+      border-radius: 0 8px 0 0;
+    }
+    .compare-table th:first-child { border-radius: 8px 0 0 0; }
+    .compare-table td {
+      padding: 0.85rem 1rem;
+      border-bottom: 1px solid var(--warm-gray);
+      vertical-align: middle;
+    }
+    .compare-table td:last-child {
+      text-align: center;
+      font-weight: 700;
+      background: rgba(0,0,0,0.03);
+    }
+    .compare-table .check { color: #27ae60; font-size: 1.1rem; }
+    .compare-table .cross { color: #e74c3c; font-size: 1.1rem; }
+    .compare-table tr.total-row td {
+      background: var(--black);
+      color: var(--white);
+      font-weight: 700;
+      border: none;
+    }
+    .compare-table tr.total-row td:last-child { background: var(--black); }
+
+    /* --- SSS accordion --- */
+    .faq-list { list-style: none; }
+    .faq-item {
+      border-bottom: 1px solid var(--warm-gray);
+    }
+    .faq-item:first-child { border-top: 1px solid var(--warm-gray); }
+    .faq-item summary {
+      padding: 1.1rem 0;
+      font-weight: 600;
+      font-size: 0.95rem;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      list-style: none;
+      gap: 1rem;
+    }
+    .faq-item summary::-webkit-details-marker { display: none; }
+    .faq-item summary::after {
+      content: '+';
+      font-size: 1.3rem;
+      font-weight: 300;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+      color: var(--text-muted);
+    }
+    .faq-item[open] summary::after { transform: rotate(45deg); }
+    .faq-item .faq-body {
+      padding: 0 0 1.1rem;
+      font-size: 0.875rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+/* --- Galeri --- */
+      .gallery-wrap {
+        position: relative;
+        border-radius: var(--radius);
+        overflow: hidden;
+        aspect-ratio: 1;
+        background: var(--warm-gray);
+        margin-bottom: 0.75rem;
+        user-select: none;
+      }
+
+      .gallery-slides {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.35s cubic-bezier(.4,0,.2,1);
+      }
+
+      .gallery-slide {
+        min-width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+      }
+
+      .gallery-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+
+      .gallery-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(255,255,255,0.92);
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        transition: background 0.2s, transform 0.2s;
+        z-index: 2;
+      }
+      .gallery-arrow:hover { background: var(--white); transform: translateY(-50%) scale(1.08); }
+      .gallery-arrow.prev { left: 10px; }
+      .gallery-arrow.next { right: 10px; }
+
+      .gallery-counter {
+        position: absolute;
+        bottom: 10px;
+        right: 12px;
+        background: rgba(0,0,0,0.45);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 600;
+        padding: 0.2rem 0.55rem;
+        border-radius: 999px;
+        letter-spacing: 0.04em;
+        pointer-events: none;
+      }
+
+      .gallery-thumbs {
+        display: flex;
+        gap: 0.4rem;
+        overflow-x: auto;
+        scrollbar-width: none;
+        padding-bottom: 2px;
+      }
+      .gallery-thumbs::-webkit-scrollbar { display: none; }
+
+      .gallery-thumb {
+        flex-shrink: 0;
+        width: 68px;
+        height: 68px;
+        border-radius: var(--radius-sm);
+        background: var(--warm-gray);
+        border: 2px solid transparent;
+        cursor: pointer;
+        overflow: hidden;
+        transition: border-color 0.18s;
+      }
+      .gallery-thumb.active { border-color: var(--black); }
+      .gallery-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  </style>
+
+  <!-- Schema.org: Product -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": "The Way Flow 9in1 Smart Trike",
+    "description": "9 farklı kullanım modu, 360° dönen koltuk, 5 noktalı emniyet kemeri ve 3 saniyede katlanma özelliğiyle 10 ay – 5 yaş arası çocuğunuza uyum sağlayan akıllı bebek trikeı.",
+    "brand": { "@type": "Brand", "name": "The Way" },
+    "offers": {
+      "@type": "AggregateOffer",
+      "availability": "https://schema.org/InStock",
+      "priceCurrency": "TRY",
+      "offerCount": "4"
+    },
+    "additionalProperty": [
+      { "@type": "PropertyValue", "name": "Ağırlık", "value": "8.4 kg" },
+      { "@type": "PropertyValue", "name": "Sertifika", "value": "EN71" },
+      { "@type": "PropertyValue", "name": "Yaş Aralığı", "value": "10 ay – 5 yaş" }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <!-- Sticky Satın Al Çubuğu -->
+  <div class="sticky-buy-bar" id="sticky-buy-bar">
+    <div>
+      <span class="sticky-name">Flow 9in1 Smart Trike</span>
+      <span class="sticky-sub">10 Ay – 5 Yaş · EN71 Sertifikalı</span>
+    </div>
+    <a href="https://www.trendyol.com/magaza/theway-m-818336?channelId=1&subPathStrategy=no-subpath"
+       target="_blank" rel="noopener"
+       class="btn btn--primary btn--sm" style="white-space:nowrap">
+      🛒 Trendyol'dan Satın Al
+    </a>
+  </div>
+
+  <!-- Sayfa başlığı -->
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label">Ürün</span>
+      <h1 style="margin-top:0.5rem">Flow 9in1 Smart Trike</h1>
+      <p>Tek ürün, 9 mod, yıllarca büyüme</p>
+    </div>
+  </div>
+
+  <!-- Ana ürün bölümü -->
+  <section class="section">
+    <div class="container">
+      <div class="product-layout">
+
+        <!-- Galeri -->
+        <div class="product-gallery">
+          <!-- Ana slayt alanı -->
+          <div class="gallery-wrap" id="gallery-wrap">
+            <div class="gallery-slides" id="gallery-slides"></div>
+            <button class="gallery-arrow prev" id="gallery-prev" aria-label="Önceki görsel">&#8592;</button>
+            <button class="gallery-arrow next" id="gallery-next" aria-label="Sonraki görsel">&#8594;</button>
+            <div class="gallery-counter" id="gallery-counter">1 / 8</div>
+          </div>
+
+          <!-- Thumbnail şeridi -->
+          <div class="gallery-thumbs" id="gallery-thumbs"></div>
+
+          <!-- Video -->
+          <div style="margin-top:0.75rem; border-radius:var(--radius); overflow:hidden; background:#000;">
+            <video controls preload="metadata" style="width:100%; display:block; max-height:240px; object-fit:cover;">
+              <source src="images/video.mp4" type="video/mp4" />
+              Tarayıcınız video oynatmayı desteklemiyor.
+            </video>
+          </div>
+        </div>
+
+        <!-- Bilgiler -->
+        <div class="product-info">
+          <span class="badge badge--black">EN71 Sertifikalı</span>
+
+          <h1 style="margin-top:0.75rem">The Way Flow<br/>9in1 Smart Trike</h1>
+
+          <div class="age-badge">
+            <span>👶</span> 10 Ay – 5 Yaş
+          </div>
+
+          <p class="product-tagline">
+            Çocuğunuz büyüdükçe dönüşen, 9 farklı kullanım moduna sahip akıllı trike.
+            Bir kez alın, yıllarca kullanın.
+          </p>
+
+          <!-- Renk Seçici -->
+          <div>
+            <strong style="font-size:0.9rem">Renk:</strong>
+            <span id="color-name" style="font-size:0.85rem; color:var(--text-muted); margin-left:0.4rem">Beyaz</span>
+            <div class="color-swatches mt-1">
+              <button class="color-swatch active" style="background:#F2F0ED; border:1.5px solid #ccc;" title="Beyaz" data-color="Beyaz" data-folder="beyaz" aria-label="Beyaz"></button>
+              <button class="color-swatch" style="background:#B0B0B0;" title="Gri" data-color="Gri" data-folder="gri" aria-label="Gri"></button>
+              <button class="color-swatch" style="background:#7A8C6E;" title="Haki" data-color="Haki" data-folder="haki" aria-label="Haki"></button>
+              <button class="color-swatch" style="background:#A8CFBA;" title="Mint" data-color="Mint" data-folder="mint" aria-label="Mint"></button>
+              <button class="color-swatch" style="background:#E8A0B0;" title="Pembe" data-color="Pembe" data-folder="pembe" aria-label="Pembe"></button>
+              <button class="color-swatch" style="background:#2A2A2A;" title="Siyah" data-color="Siyah" data-folder="siyah" aria-label="Siyah"></button>
+            </div>
+          </div>
+
+          <hr class="divider" />
+
+          <!-- Ürün Açıklaması -->
+          <div>
+            <p style="font-size:0.875rem; line-height:1.7; color:var(--text-muted)">
+              Hem ebeveyn kontrollü üç tekerlekli bisiklet hem de bağımsız denge bisikleti
+              olarak çalışan çok yönlü bir tasarım — bebeğinizin 10 aydan 5 yaşına kadar
+              her evresine uyum sağlar.
+            </p>
+            <ul class="desc-highlights">
+              <li>
+                <span>🔄</span>
+                <span><strong>360° Dönen Koltuk</strong> — bebeğinizle göz teması kurun ya da dış dünyayı birlikte keşfedin</span>
+              </li>
+              <li>
+                <span>😴</span>
+                <span><strong>Çift Yönlü Yatış Pozisyonu</strong> — hangi yönde otursa otursun 2 kademeli yatış açısı</span>
+              </li>
+              <li>
+                <span>🚲</span>
+                <span><strong>Denge Bisikleti Modu</strong> — büyüdükçe denge, motor becerisi ve kas gelişimini destekler</span>
+              </li>
+              <li>
+                <span>⚡</span>
+                <span><strong>3 Saniyede Katlanır</strong> — tek hareketle açılıp kapanır</span>
+              </li>
+              <li>
+                <span>✈️</span>
+                <span><strong>Uçak Kabin Bagajına Sığar</strong> — ultra kompakt, sadece 8,4 kg</span>
+              </li>
+            </ul>
+          </div>
+
+          <hr class="divider" />
+
+          <!-- Özellikler özeti -->
+          <ul class="specs-list">
+            <li><span class="spec-label">360° Dönen Koltuk</span><span class="spec-value">✓</span></li>
+            <li><span class="spec-label">5 Noktalı Emniyet Kemeri</span><span class="spec-value">✓</span></li>
+            <li><span class="spec-label">Güvenlik Bariyeri</span><span class="spec-value">✓</span></li>
+            <li><span class="spec-label">Katlanma Süresi</span><span class="spec-value">3 saniye</span></li>
+            <li><span class="spec-label">Ağırlık</span><span class="spec-value">8.4 kg</span></li>
+            <li><span class="spec-label">Sertifika</span><span class="spec-value">EN71</span></li>
+            <li><span class="spec-label">Renk Seçeneği</span><span class="spec-value">6 renk</span></li>
+            <li><span class="spec-label">Yaş Aralığı</span><span class="spec-value">10 Ay – 5 Yaş</span></li>
+          </ul>
+
+          <!-- Satın Al -->
+          <div class="buy-section">
+            <h3>📦 Satın Almak İçin Bir Pazaryeri Seçin</h3>
+            <div class="marketplace-btns">
+              <a href="https://www.trendyol.com/magaza/theway-m-818336?channelId=1&subPathStrategy=no-subpath" target="_blank" rel="noopener" class="btn btn--primary">
+                🛒 Trendyol
+              </a>
+              <a href="https://www.hepsiburada.com/magaza/theway" target="_blank" rel="noopener" class="btn btn--outline">
+                🛒 Hepsiburada
+              </a>
+              <a href="#" target="_blank" rel="noopener" class="btn btn--outline">
+                🛒 Amazon
+              </a>
+              <a href="https://www.n11.com/magaza/the-way" target="_blank" rel="noopener" class="btn btn--outline">
+                🛒 N11
+              </a>
+            </div>
+            <p class="form-note" style="margin-top:0.75rem">
+              * Tüm pazaryerlerinde ücretsiz kargo ve güvenli ödeme
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Kullanım Adımları & Yaş Dönemleri & Güvenlik -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-label">Nasıl Kullanılır?</span>
+        <h2 style="margin-top:0.5rem">Ebeveyn kontrolünden<br/>çocuk bağımsızlığına</h2>
+      </div>
+
+      <div class="usage-steps">
+        <div class="usage-step">
+          <div class="step-num">1. Adım — Küçük Bebekler</div>
+          <h4>Ebeveyn Kontrollü Mod</h4>
+          <p>Pedal ve gidon boşa döner; yön ve hız kontrolü tamamen ebeveyn itme kolundadır. Siz yönetirsiniz, bebek keyfini çıkarır.</p>
+        </div>
+        <div class="usage-step">
+          <div class="step-num">2. Adım — Büyüyen Çocuklar</div>
+          <h4>Çocuk Kontrollü Mod</h4>
+          <p>Pedal ve gidon kontrolü çocuğunuza geçer. Ebeveyn itme kolu ile dışarıdan yönlendirme desteği vermeye devam edebilirsiniz.</p>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:3rem; margin-bottom:1rem">
+        <span class="section-label">Yaş Dönemlerine Göre 9 Fonksiyon</span>
+      </div>
+
+      <div class="age-funcs">
+        <div class="age-func">
+          <div class="age-range">10 – 18 Ay</div>
+          <div class="func-list">Bebek arabası<br/>Yürüteç<br/>Ebeveyn kontrollü trike</div>
+        </div>
+        <div class="age-func">
+          <div class="age-range">18 – 24 Ay</div>
+          <div class="func-list">Pedallı trike<br/>Scooter<br/>Koşu arabası</div>
+        </div>
+        <div class="age-func">
+          <div class="age-range">24 – 30 Ay</div>
+          <div class="func-list">Alışveriş arabası<br/>Denge bisikleti</div>
+        </div>
+        <div class="age-func">
+          <div class="age-range">30 – 36 Ay</div>
+          <div class="func-list">Taşıma çantası<br/>Denge bisikleti</div>
+        </div>
+        <div class="age-func">
+          <div class="age-range">36 – 60 Ay</div>
+          <div class="func-list">Bağımsız bisiklet<br/>Çocuk kontrollü trike</div>
+        </div>
+      </div>
+
+      <div class="text-center" style="margin-top:3rem; margin-bottom:0.5rem">
+        <span class="section-label">Güvenlik & Konfor</span>
+      </div>
+      <div class="safety-chips">
+        <span class="safety-chip">☕ Entegre Bardaklık</span>
+        <span class="safety-chip">🛑 Güvenli Fren Sistemi</span>
+        <span class="safety-chip">🚧 Güvenlik Bariyeri</span>
+        <span class="safety-chip">🔒 5 Noktalı Emniyet Kemeri</span>
+        <span class="safety-chip">⛱️ Ayarlanabilir Tente</span>
+        <span class="safety-chip">🖐️ Ergonomik İtme Kolu</span>
+        <span class="safety-chip">🛞 Kauçuk Tekerlekler</span>
+        <span class="safety-chip">⚖️ 20 kg Taşıma Kapasitesi</span>
+        <span class="safety-chip">✅ EN71-1-2-3 Sertifikalı</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Detaylı özellikler -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-label">Özellikler</span>
+        <h2 style="margin-top:0.5rem">Neden Flow 9in1?</h2>
+      </div>
+      <div class="features-grid">
+        <div class="feature-item">
+          <span class="feature-icon">🔄</span>
+          <h3>360° Dönen Koltuk</h3>
+          <p>Çocuğunuzla göz teması kurarak ya da manzaraya yönelterek yolculuğa çıkın. Her iki yönde de mükemmel konfor.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">🛡️</span>
+          <h3>5 Noktalı Emniyet Kemeri</h3>
+          <p>Omuzlar, bel ve kasıklardan destekleyen emniyet sistemi. Ek güvenlik bariyeriyle ikinci bir koruma katmanı.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">⚡</span>
+          <h3>3 Saniyede Katlanır</h3>
+          <p>Alışveriş merkezinde, havaalanında, arabanın bagajına — tek hareketle katla ve yola devam et.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">⚖️</span>
+          <h3>Sadece 8.4 kg</h3>
+          <p>Hafif ama sağlam yapısıyla taşımak yormuyor. Uzun gezilerde bile yük hissetmezsiniz.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">✅</span>
+          <h3>EN71 Sertifikalı</h3>
+          <p>Avrupa güvenlik standartlarına tam uyum. Malzemeler ve yapı titizlikle test edilmiş.</p>
+        </div>
+        <div class="feature-item">
+          <span class="feature-icon">📈</span>
+          <h3>10 Ay – 5 Yaş</h3>
+          <p>Bebek arabasından trikeye, bisikletten scootera — çocuğunuz büyüdükçe ürün de dönüşür.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servis çağrısı -->
+  <!-- SSS -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-label">SSS</span>
+        <h2 style="margin-top:0.5rem">Sıkça Sorulan Sorular</h2>
+      </div>
+      <ul class="faq-list">
+
+        <details class="faq-item">
+          <summary>Kaç yaş aralığına uygun?</summary>
+          <div class="faq-body">
+            Flow 9in1 Smart Trike, <strong>10 ay – 5 yaş</strong> (yaklaşık 20 kg'a kadar) arasındaki çocuklar için tasarlanmıştır.
+            Her yaş döneminde farklı modlarla çocuğunuzun büyüme hızına uyum sağlar.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>9 kullanım modu nedir?</summary>
+          <div class="faq-body">
+            Ürün bebeğinizin yaşına göre şu modlarda kullanılabilir: bebek arabası, yürüteç, ebeveyn kontrollü trike,
+            pedallı trike, scooter ve denge bisikleti.
+            Ayrıntılı kullanım adımları yukarıdaki "Nasıl Kullanılır?" bölümünde açıklanmıştır.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Montaj gerekiyor mu?</summary>
+          <div class="faq-body">
+            Kutunun içinden bisiklet ana gövdesi, sırtlık, tente ve itme kolu çıkar.
+            Bu dört parçayı birleştirdiğinizde ürün kullanıma hazır hâle gelir.
+            Kurulum süresi yaklaşık <strong>3 dakika</strong>dır — ekstra alet gerekmez.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Katlanması gerçekten 3 saniye mi sürer?</summary>
+          <div class="faq-body">
+            Evet. Katlama mekanizması tek hareketle çalışır; kilitleme sesini duyduktan sonra ürün hazır hâle gelir.
+            Açma ve kapama toplamda ortalama <strong>3 saniye</strong> sürer. Alışveriş merkezinde, otoparkta ve
+            havalimanında büyük kolaylık sağlar.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Nereden satın alabilirim?</summary>
+          <div class="faq-body">
+            The Way Flow 9in1 Smart Trike; <strong>Trendyol, Hepsiburada, Amazon</strong> ve
+            <strong>N11</strong> mağazalarımızdan satın alınabilir. Yukarıdaki "Satın Al" butonlarından
+            tercih ettiğiniz pazaryerine yönlendirilirsiniz. Tüm satışlarda ücretsiz kargo geçerlidir.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Güvenlik sertifikası var mı?</summary>
+          <div class="faq-body">
+            Evet. Ürün <strong>EN71-1-2-3 Avrupa Güvenlik Sertifikası</strong>'na sahiptir. Malzemeler ve yapı,
+            uluslararası standartlara göre test edilmiştir. Ayrıca 5 noktalı emniyet kemeri ve güvenlik bariyeri
+            ek koruma sağlar.
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Teknik servis ve garanti kapsamı nedir?</summary>
+          <div class="faq-body">
+            Ürün <strong>2 yıl garanti</strong> kapsamındadır. Pazaryerinden satın aldığınız ürünler için
+            teknik destek, eksik parça veya arıza taleplerini
+            <a href="servis.html" style="font-weight:600">Teknik Servis Talebi</a> formumuzdan iletebilirsiniz.
+            Ekibimiz <strong>1 iş günü</strong> içinde size geri döner. Gerekirse ücretsiz parça gönderimi yapılır.
+          </div>
+        </details>
+
+      </ul>
+    </div>
+  </section>
+
+  <!-- Teknik Servis CTA -->
+  <section class="section">
+    <div class="container text-center">
+      <h2>Ürününüzle ilgili yardım mı lazım?</h2>
+      <p style="margin: 0.75rem auto 2rem; color: var(--text-muted);">
+        Teknik destek, eksik parça veya kullanım soruları için servis formunu doldurun, size ulaşalım.
+      </p>
+      <a href="servis.html" class="btn btn--primary">Teknik Servis Talebi</a>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // =============================================
+    // Galeri sistemi
+    // =============================================
+    const COLOR_COUNTS = { beyaz: 8, gri: 8, haki: 8, mint: 8, pembe: 8, siyah: 8 };
+    let currentFolder = 'beyaz';
+    let currentIndex  = 0;
+    let totalImages   = 8;
+    let touchStartX   = 0;
+
+    function buildGallery(folder) {
+      currentFolder = folder;
+      currentIndex  = 0;
+      totalImages   = COLOR_COUNTS[folder] || 8;
+
+      const slidesEl = document.getElementById('gallery-slides');
+      const thumbsEl = document.getElementById('gallery-thumbs');
+      slidesEl.innerHTML = '';
+      thumbsEl.innerHTML = '';
+
+      for (let i = 1; i <= totalImages; i++) {
+        const src = `images/${folder}/${i}.jpg`;
+
+        // Slayt
+        const slide = document.createElement('div');
+        slide.className = 'gallery-slide';
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = `The Way Flow 9in1 Smart Trike — ${folder} — Görsel ${i}`;
+        img.loading = i === 1 ? 'eager' : 'lazy';
+        slide.appendChild(img);
+        slidesEl.appendChild(slide);
+
+        // Thumbnail
+        const thumb = document.createElement('div');
+        thumb.className = 'gallery-thumb' + (i === 1 ? ' active' : '');
+        thumb.dataset.index = i - 1;
+        const tImg = document.createElement('img');
+        tImg.src = src;
+        tImg.alt = `Görsel ${i}`;
+        tImg.loading = 'lazy';
+        thumb.appendChild(tImg);
+        thumb.addEventListener('click', () => goTo(i - 1));
+        thumbsEl.appendChild(thumb);
+      }
+
+      goTo(0, false);
+    }
+
+    function goTo(index, animate = true) {
+      if (index < 0) index = totalImages - 1;
+      if (index >= totalImages) index = 0;
+      currentIndex = index;
+
+      const slidesEl = document.getElementById('gallery-slides');
+      if (!animate) slidesEl.style.transition = 'none';
+      slidesEl.style.transform = `translateX(-${index * 100}%)`;
+      if (!animate) requestAnimationFrame(() => { slidesEl.style.transition = ''; });
+
+      document.getElementById('gallery-counter').textContent = `${index + 1} / ${totalImages}`;
+
+      document.querySelectorAll('.gallery-thumb').forEach((t, i) => {
+        t.classList.toggle('active', i === index);
+      });
+
+      const activeThumb = document.querySelectorAll('.gallery-thumb')[index];
+      if (activeThumb) activeThumb.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    document.getElementById('gallery-prev').addEventListener('click', () => goTo(currentIndex - 1));
+    document.getElementById('gallery-next').addEventListener('click', () => goTo(currentIndex + 1));
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowLeft')  goTo(currentIndex - 1);
+      if (e.key === 'ArrowRight') goTo(currentIndex + 1);
+    });
+
+    const wrap = document.getElementById('gallery-wrap');
+    wrap.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+    wrap.addEventListener('touchend', e => {
+      const diff = touchStartX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? currentIndex + 1 : currentIndex - 1);
+    });
+
+    // Renk seçici
+    document.querySelectorAll('.color-swatch').forEach(btn => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.color-swatch').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('color-name').textContent = btn.dataset.color;
+        buildGallery(btn.dataset.folder);
+      });
+    });
+
+    buildGallery('beyaz');
+
+    // Sticky satın al çubuğu
+    const stickyBar = document.getElementById('sticky-buy-bar');
+    const buySection = document.querySelector('.buy-section');
+    if (stickyBar && buySection) {
+      const observer = new IntersectionObserver(
+        ([entry]) => { stickyBar.classList.toggle('visible', !entry.isIntersecting); },
+        { threshold: 0 }
+      );
+      observer.observe(buySection);
+    }
+  </script>
+</body>
+</html>

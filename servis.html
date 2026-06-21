@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teknik Servis Talebi — The Way</title>
+  <meta name="description" content="The Way ürünleri için teknik servis, arıza, eksik parça veya kullanım desteği talebinizi buradan iletebilirsiniz." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .service-layout {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    @media (max-width: 768px) {
+      .service-layout { grid-template-columns: 1fr; gap: 2rem; }
+    }
+
+    .service-info h2 { margin-bottom: 1rem; font-size: 1.3rem; }
+    .service-info p { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1rem; }
+
+    .steps-list {
+      list-style: none;
+      counter-reset: steps;
+    }
+    .steps-list li {
+      counter-increment: steps;
+      display: flex;
+      gap: 0.9rem;
+      align-items: flex-start;
+      padding: 0.75rem 0;
+      border-bottom: 1px solid var(--warm-gray);
+      font-size: 0.875rem;
+    }
+    .steps-list li:last-child { border: none; }
+    .steps-list li::before {
+      content: counter(steps);
+      background: var(--black);
+      color: var(--white);
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.72rem;
+      font-weight: 700;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .service-form-box {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 2rem;
+      box-shadow: var(--shadow);
+    }
+
+    .file-upload-area {
+      border: 2px dashed var(--warm-gray);
+      border-radius: var(--radius-sm);
+      padding: 1.5rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color var(--transition), background var(--transition);
+    }
+    .file-upload-area:hover {
+      border-color: var(--accent);
+      background: rgba(200,169,126,0.04);
+    }
+    .file-upload-area input[type="file"] {
+      display: none;
+    }
+    .file-upload-area .upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
+    .file-upload-area p { font-size: 0.8rem; color: var(--text-muted); max-width: none; margin: 0; }
+    .file-upload-area strong { font-size: 0.85rem; }
+    #file-names { font-size: 0.78rem; color: var(--accent-dark); margin-top: 0.4rem; }
+
+    .required-note {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+    }
+    .required-note span { color: #c0392b; }
+  </style>
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label">Destek</span>
+      <h1 style="margin-top:0.5rem">Teknik Servis Talebi</h1>
+      <p>Trendyol, Hepsiburada, Amazon veya N11'den sipariş vermiş müşterilerimiz için</p>
+    </div>
+  </div>
+
+  <section class="section">
+    <div class="container">
+      <div class="service-layout">
+
+        <!-- Sol: Bilgi -->
+        <div class="service-info">
+          <h2>Nasıl çalışır?</h2>
+          <p>
+            Formu doldurmanız yeterli — ekibimiz size en kısa sürede
+            geri dönecek.
+          </p>
+          <ul class="steps-list">
+            <li>Aşağıdaki formu doldurun. Sipariş numaranızı ve sorununuzu kısaca açıklayın.</li>
+            <li>Varsa fotoğraf veya video yükleyin — sorunu daha hızlı çözmemize yardımcı olur.</li>
+            <li>Ekibimiz 1 iş günü içinde telefon veya e-posta ile geri döner.</li>
+            <li>Sorun çözüme kavuşur. Gerekirse ücretsiz parça gönderimi yapılır.</li>
+          </ul>
+
+          <div style="margin-top:2rem; padding:1.25rem; background:var(--cream); border-radius:var(--radius);">
+            <p style="font-size:0.83rem; color:var(--text-muted); max-width:none;">
+              💡 <strong>İpucu:</strong> Sipariş numaranızı hazır bulundurun. Trendyol'da "Siparişlerim",
+              Hepsiburada'da "Hesabım > Siparişlerim" bölümünden bulabilirsiniz.
+            </p>
+          </div>
+
+
+        </div>
+
+        <!-- Sağ: Form -->
+        <div class="service-form-box">
+          <h2 style="margin-bottom:0.25rem">Servis Başvuru Formu</h2>
+          <p class="required-note"><span>*</span> işaretli alanlar zorunludur.</p>
+
+          <div class="alert alert--success" id="servis-success">
+            Başvurunuz alındı! 🎉 En geç 1 iş günü içinde size ulaşacağız.
+          </div>
+          <div class="alert alert--error" id="servis-error">
+            Bir hata oluştu. Lütfen doğrudan bizi arayın veya e-posta gönderin.
+          </div>
+
+          <form id="servis-form" novalidate>
+            <input type="hidden" name="access_key" value="1edcb262-aeb4-44b7-a63e-ce8cc095728a" />
+            <input type="hidden" name="subject" value="The Way — Yeni Teknik Servis Talebi" />
+            <input type="hidden" name="from_name" value="The Way Website" />
+            <input type="hidden" name="form_type" value="teknik_servis" />
+
+            <!-- Pazaryeri + Sipariş No -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="required" for="pazaryeri">Pazaryeri</label>
+                <select class="form-control" id="pazaryeri" name="pazaryeri" required>
+                  <option value="">Seçin…</option>
+                  <option>Trendyol</option>
+                  <option>Hepsiburada</option>
+                  <option>Amazon</option>
+                  <option>N11</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="required" for="siparis-no">Sipariş Numarası</label>
+                <input class="form-control" type="text" id="siparis-no" name="siparis_no"
+                  placeholder="Örn: 12345678" required />
+              </div>
+            </div>
+
+            <!-- Ürün -->
+            <div class="form-group">
+              <label class="required" for="urun">Ürün</label>
+              <select class="form-control" id="urun" name="urun" required>
+                <option value="">Seçin…</option>
+                <option>The Way Flow 9in1 Smart Trike</option>
+                <option>Diğer</option>
+              </select>
+            </div>
+
+            <!-- Ad Soyad -->
+            <div class="form-group">
+              <label class="required" for="ad-soyad">Ad Soyad</label>
+              <input class="form-control" type="text" id="ad-soyad" name="ad_soyad"
+                placeholder="Adınız Soyadınız" required />
+            </div>
+
+            <!-- Telefon + E-posta -->
+            <div class="form-row">
+              <div class="form-group">
+                <label for="telefon-servis">Telefon</label>
+                <input class="form-control" type="tel" id="telefon-servis" name="telefon"
+                  placeholder="0500 000 00 00" />
+                <p class="form-note">Telefon veya e-postadan en az biri zorunlu</p>
+              </div>
+              <div class="form-group">
+                <label for="email-servis">E-posta</label>
+                <input class="form-control" type="email" id="email-servis" name="email"
+                  placeholder="ornek@mail.com" />
+              </div>
+            </div>
+
+            <!-- Başvuru Sebebi -->
+            <div class="form-group">
+              <label class="required" for="sebep">Başvuru Sebebi</label>
+              <select class="form-control" id="sebep" name="sebep" required>
+                <option value="">Seçin…</option>
+                <option>Arıza / Bozuk Parça</option>
+                <option>Eksik Parça</option>
+                <option>Kullanım Desteği</option>
+                <option>Değişim / İade Talebi</option>
+                <option>Diğer</option>
+              </select>
+            </div>
+
+            <!-- Açıklama -->
+            <div class="form-group">
+              <label class="required" for="aciklama">Sorunun Açıklaması</label>
+              <textarea class="form-control" id="aciklama" name="aciklama" rows="5"
+                placeholder="Sorununuzu kısaca açıklayın. Ne zaman, nasıl fark ettiniz? Hangi parça etkilendi?" required></textarea>
+            </div>
+
+            <!-- Dosya Yükleme -->
+            <div class="form-group">
+              <label>Fotoğraf / Video (isteğe bağlı)</label>
+              <label class="file-upload-area" for="dosyalar">
+                <div class="upload-icon">📎</div>
+                <strong>Dosya seçmek için tıklayın</strong>
+                <p>veya buraya sürükleyin</p>
+                <p style="margin-top:0.3rem">JPG, PNG, MP4 · Maks. 10 MB</p>
+                <input type="file" id="dosyalar" name="dosyalar" multiple accept="image/*,video/*" />
+              </label>
+              <div id="file-names"></div>
+              <p class="form-note">Arızalı parçanın görseli, sorunu daha hızlı çözmemizi sağlar.</p>
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full" id="servis-submit">
+              Başvuruyu Gönder
+            </button>
+
+            <p style="font-size:0.75rem; color:var(--text-muted); text-align:center; margin-top:1rem;">
+              Bu form aracılığıyla ilettiğiniz bilgiler yalnızca talebinizi yanıtlamak amacıyla kullanılır ve sistemlerimizde saklanmaz.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+  <script>
+    // Dosya isimlerini göster
+    document.getElementById('dosyalar').addEventListener('change', function() {
+      const names = Array.from(this.files).map(f => f.name).join(', ');
+      document.getElementById('file-names').textContent = names ? '📎 ' + names : '';
+    });
+
+    // Form gönderimi
+    document.getElementById('servis-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      // Telefon veya e-posta kontrolü
+      const telefon = this.querySelector('[name="telefon"]').value.trim();
+      const email = this.querySelector('[name="email"]').value.trim();
+      if (!telefon && !email) {
+        alert('Lütfen telefon veya e-posta adresinizi girin.');
+        return;
+      }
+
+      const successEl = document.getElementById('servis-success');
+      const errorEl = document.getElementById('servis-error');
+      const submitBtn = document.getElementById('servis-submit');
+      handleFormSubmit(this, successEl, errorEl, submitBtn);
+    });
+  </script>
+</body>
+</html>

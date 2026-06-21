@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hakkımızda — The Way</title>
+  <meta name="description" content="The Way; ebeveynlerin gerçek ihtiyaçlarından doğan, güvenli ve uzun ömürlü bebek ürünleri tasarlayan bir Türk markasıdır." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <style>
+    .story-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    @media (max-width: 768px) {
+      .story-layout { grid-template-columns: 1fr; gap: 2rem; }
+    }
+    .story-image {
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/5;
+    }
+    .story-text h2 { margin-bottom: 1rem; }
+    .story-text p { color: var(--text-muted); margin-bottom: 1rem; }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+      text-align: center;
+    }
+    .value-item {
+      padding: 2rem 1.5rem;
+    }
+    .value-icon { font-size: 2.5rem; display: block; margin-bottom: 0.75rem; }
+    .value-item h3 { font-size: 1rem; margin-bottom: 0.4rem; }
+    .value-item p { font-size: 0.875rem; color: var(--text-muted); max-width: none; }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1.5rem;
+    }
+    .trust-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      box-shadow: var(--shadow);
+    }
+    .trust-card h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); margin-bottom: 0.4rem; }
+    .trust-card p { font-size: 0.95rem; font-weight: 600; max-width: none; }
+  </style>
+</head>
+<body>
+
+  <div id="site-header"></div>
+
+  <div class="page-hero">
+    <div class="container">
+      <span class="section-label">Hakkımızda</span>
+      <h1 style="margin-top:0.5rem">The Way Kimdir?</h1>
+      <p>Ebeveynlerin gerçek ihtiyaçlarından doğan bir marka</p>
+    </div>
+  </div>
+
+  <!-- Marka Hikâyesi -->
+  <section class="section">
+    <div class="container">
+      <div class="story-layout">
+        <div class="story-image">
+          <div class="img-placeholder" style="width:100%;height:100%;min-height:420px;">
+            [ Aile / Marka Fotoğrafı ]
+          </div>
+        </div>
+        <div class="story-text">
+          <span class="section-label">Hikâyemiz</span>
+          <h2 style="margin-top:0.5rem">Her ürünün arkasında bir ebeveynin sorusu var</h2>
+          <p>
+            The Way, "neden çocuğumuz büyüdükçe yeni ürün almak zorunda kalıyoruz?"
+            sorusundan doğdu. Aileler olarak hepimiz aynı döngüyü yaşıyoruz: bebek arabası,
+            sonra yürüteç, sonra trike, sonra bisiklet… Her aşamada yeni bir harcama.
+          </p>
+          <p>
+            Biz bu döngüyü kırmak istedik. Tek bir ürünün, çocuğun her gelişim aşamasına
+            uyum sağlayabileceğine inandık. Flow 9in1 Smart Trike bu inancın somut hali.
+          </p>
+          <p>
+            Tasarladığımız her ürün, önce güvenlikten geçiyor. EN71 sertifikası bizim için
+            bir pazarlama aracı değil, ailelerimize verdiğimiz söz.
+          </p>
+          <a href="urun-flow-9in1.html" class="btn btn--primary mt-3" style="display:inline-flex">Ürünü İncele</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Değerlerimiz -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-label">Değerlerimiz</span>
+        <h2 style="margin-top:0.5rem">Bizi biz yapan üç ilke</h2>
+      </div>
+      <div class="values-grid">
+        <div class="value-item">
+          <span class="value-icon">🛡️</span>
+          <h3>Güvenlik Her Şeyden Önce</h3>
+          <p>Her ürün EN71 Avrupa güvenlik standartlarına göre test edilir. Bebeğinizin güvenliğinde asla taviz vermeyiz.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">🌱</span>
+          <h3>Uzun Ömürlü Tasarım</h3>
+          <p>Az al, uzun kullan. Çocuğunuzla birlikte büyüyen ürünler hem cüzdanınıza hem çevreye karşı sorumludur.</p>
+        </div>
+        <div class="value-item">
+          <span class="value-icon">❤️</span>
+          <h3>Aile Odaklı</h3>
+          <p>Reklamlar değil, gerçek aileler. Ürünlerimizi geliştirirken ailelerden gelen geri bildirimleri dinleriz.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Güven Unsurları -->
+  <section class="section">
+    <div class="container">
+      <div class="text-center mb-4">
+        <span class="section-label">Güven</span>
+        <h2 style="margin-top:0.5rem">Şeffaflık ilkemiz</h2>
+        <p style="margin: 0.75rem auto 0; color: var(--text-muted);">
+          The Way, kayıtlı bir Türk şirketidir. Aşağıdaki bilgilerle bize ulaşabilir, kimliğimizi doğrulayabilirsiniz.
+        </p>
+      </div>
+      <div class="trust-grid">
+        <div class="trust-card">
+          <h4>Şirket Adı</h4>
+          <p>[TODO: Şirket / Ticari unvan]</p>
+        </div>
+        <div class="trust-card">
+          <h4>Vergi No</h4>
+          <p>[TODO: Vergi numarası]</p>
+        </div>
+        <div class="trust-card">
+          <h4>Adres</h4>
+          <p>[TODO: Şirket adresi]</p>
+        </div>
+        <div class="trust-card">
+          <h4>İletişim</h4>
+          <p>[TODO: Telefon / E-posta]</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--black">
+    <div class="container text-center">
+      <h2 style="color:var(--white)">Bir sorunuz mu var?</h2>
+      <p style="color:rgba(255,255,255,0.65); margin: 0.75rem auto 2rem; max-width: 40ch;">
+        İletişim sayfamızdan bize ulaşabilir ya da teknik servis talebinizi iletebilirsiniz.
+      </p>
+      <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+        <a href="iletisim.html" class="btn btn--accent">İletişime Geç</a>
+        <a href="servis.html" class="btn btn--outline" style="color:var(--white); border-color:var(--white)">Teknik Servis</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="site-footer"></div>
+  <script src="js/main.js"></script>
+</body>
+</html>
