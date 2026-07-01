@@ -19,8 +19,10 @@
       align-items: start;
     }
 
-    @media (max-width: 768px) {
-      .product-layout { grid-template-columns: 1fr; gap: 2rem; }
+    @media (max-width: 900px) {
+      .product-layout { grid-template-columns: 1fr; gap: 1.5rem; }
+      .product-gallery { position: relative; top: auto; }
+      .product-info { position: relative; top: auto; }
     }
 
     .product-gallery {
@@ -97,7 +99,7 @@
       gap: 1.25rem;
       margin-top: 1.5rem;
     }
-    @media (max-width: 640px) { .usage-steps { grid-template-columns: 1fr; } }
+    @media (max-width: 900px) { .usage-steps { grid-template-columns: 1fr; } }
     .usage-step {
       background: var(--white);
       border-radius: var(--radius);
@@ -122,7 +124,7 @@
       gap: 0.75rem;
       text-align: center;
     }
-    @media (max-width: 768px) { .age-funcs { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 900px) { .age-funcs { grid-template-columns: repeat(3, 1fr); } }
     @media (max-width: 480px) { .age-funcs { grid-template-columns: repeat(2, 1fr); } }
     .age-func {
       background: var(--white);
@@ -205,6 +207,14 @@
     }
     @media (max-width: 480px) {
       .sticky-buy-bar .sticky-name { font-size: 0.82rem; }
+      .sticky-buy-bar .btn { font-size: 0.78rem; padding: 0.6rem 0.9rem; }
+      .gallery-thumb { width: 60px; height: 60px; }
+    }
+    @media (max-width: 900px) {
+      .buy-section { padding: 1.25rem; }
+      .marketplace-btns { grid-template-columns: 1fr; }
+      .gallery-wrap { aspect-ratio: 4/3; }
+      .page-hero { padding: 2rem 0 1.5rem; }
     }
 
     /* --- Timeline --- */
