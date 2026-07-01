@@ -115,7 +115,6 @@ p { max-width: 65ch; }
   .section { padding: 2.5rem 0; }
   .page-hero { padding: 1.75rem 0 1.25rem; }
   .trust-bar { gap: 1rem; padding: 1rem 0; }
-  .features-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
 }
 
 /* --- Header / Nav --- */

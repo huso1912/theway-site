@@ -21,8 +21,6 @@
 
     @media (max-width: 900px) {
       .product-layout { grid-template-columns: 1fr; gap: 1.5rem; }
-      .product-gallery { position: relative; top: auto; }
-      .product-info { position: relative; top: auto; }
     }
 
     .product-gallery {
@@ -33,6 +31,12 @@
     .product-info {
       position: sticky;
       top: 5rem;
+    }
+
+    /* Mobilde sticky'yi kapat — bu blok sticky kurallarından SONRA geldiği için override eder */
+    @media (max-width: 900px) {
+      .product-gallery { position: relative !important; top: auto !important; }
+      .product-info { position: relative !important; top: auto !important; }
     }
 
     /* Eski galeri stilleri yerini yenisine bıraktı */
